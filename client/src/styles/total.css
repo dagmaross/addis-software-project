@@ -1,0 +1,12 @@
+.total{
+    display: flex;
+    justify-content: space-around;
+}
+.alltotal{
+    display: flex;
+    flex-direction: column;
+}
+.totalnumbers{
+    display: flex;
+    justify-content: space-around;  
+}

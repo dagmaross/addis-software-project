@@ -1,0 +1,21 @@
+/* .title{
+    margin-left: 10rem;
+} */
+h1{
+    text-align: center;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 96px;
+margin-top: -1rem;
+}
+.s1{
+    color: #2174C9;
+}
+.s2{
+    color: #FA8937;
+}
+.s3{
+    color: #24CDC8;
+}
