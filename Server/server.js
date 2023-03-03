@@ -8,7 +8,7 @@ const musicRouter = require('./routes/routes');
 const statRouter = require('./routes/statRoute');
 const morgan  = require('morgan')
 app.use(express.json())
-app.get('/api/v1', (req, res) => {
+app.get('/', (req, res) => {
     res.send('music player')
 })
 app.use(cors())
