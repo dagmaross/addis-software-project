@@ -1,8 +1,10 @@
-import'../styles/header.css';
+
+import{Title,Span1,Span2,Span3}from'../styledComponent/create';
 const Header = () => {
+    
     return ( 
         <div className="title">
-    <h1><span className="s1"> Make </span> <span className="s2">Your</span> <span className="s3">Music List</span> </h1>
+    <Title><Span1> Make </Span1> <Span2 >Your</Span2> <Span3 >Music List</Span3> </Title>
         </div>
      );
 }

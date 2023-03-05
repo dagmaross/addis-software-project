@@ -1,9 +1,9 @@
-import '../styles/createlist.css';
+
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import'../styles/header.css'
-import axios from 'axios';
 
+import axios from 'axios';
+import{Input,Label,Text4,List,Button,Loadingbar,Loadingbarfil,Form,Title,Span1,Span2,Span3}from'../styledComponent/create';
 const Edit = () => {
     
     const{id}=useParams();
@@ -41,35 +41,35 @@ navigate('/lists')
 }
     return ( 
         <div>
-              <h1><span className="s1"> Update </span> <span className="s2">Your</span> <span className="s3">Music List</span> </h1>
-               <div className="list" >
-        <form action="">
-            <label htmlFor="">Title</label>
-            <input type="text" 
+              <Title><Span1> Update </Span1> <Span2>Your</Span2> <Span3 className="s3">Music List</Span3> </Title>
+               <List >
+        <Form action="">
+            <Label htmlFor="">Title</Label>
+            <Input type="text" 
             onChange={(e)=>settitle(e.target.value)}
             value={title}
             />
-            <label htmlFor="">Artist</label>
-            <input type="text" 
+            <Label htmlFor="">Artist</Label>
+            <Input type="text" 
                onChange={(e)=>setartist(e.target.value)}
                value={artist}
             />
-            <label htmlFor="">Album</label>
-            <input type="text" 
+            <Label htmlFor="">Album</Label>
+            <Input type="text" 
               
               onChange={(e)=>setalbum(e.target.value)}
               value={album}
             />
-            <label htmlFor="">Genre</label>
-            <input type="text"
+            <Label htmlFor="">Genre</Label>
+            <Input type="text"
              
              onChange={(e)=>setgenre(e.target.value)}
              value={genre}
             />
-            <button onClick={(e)=>handleUpdate(e)}><h4>update</h4></button>
-        </form>
+            <Button onClick={(e)=>handleUpdate(e)}><Text4>update</Text4></Button>
+        </Form>
 
-    </div> 
+    </List> 
         </div>
     
      );

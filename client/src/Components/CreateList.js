@@ -1,76 +1,77 @@
-import '../styles/createlist.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import{Input,Label,Text4,List,Button,Loadingbar,Loadingbarfill,Form}from'../styledComponent/create';
+
+import{Spin}from'antd';
 const CreateList = () => {
+  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+  const [album, setAlbum] = useState('');
+  const [genre, setGenre] = useState('');
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const [title, settitle] = useState('');
-    const [artist, setartist] = useState('');
-    const [album, setalbum] = useState('');
-    const [genre, setgenre] = useState('');
-    const [error, seterror] = useState(null);
-    
-    const handlesubmit = async (e) => {
- 
-      e.preventDefault();
-    
-      const workout = { title, artist, album, genre };
-    
-      try {
-        const response = await fetch('/api/v1/music', {
-          method: 'POST',
-          body: JSON.stringify(workout),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-    
-        const json = await response.json();
-    
-        if (!response.ok) {
-          throw new Error(json.error);
-        }
-    
-        settitle('');
-        setartist('');
-        setalbum('');
-        setgenre('');
-        seterror(null);
-    
-        console.log('new list added', json);
-        alert("sucessful")
-      } catch (error) {
-        seterror(error.message);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const workout = { title, artist, album, genre };
+
+    try {
+      const response = await fetch('/api/v1/music', {
+        method: 'POST',
+        body: JSON.stringify(workout),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new Error(json.error);
       }
-    };
-    
-    return (
-        <div className="list" onSubmit={handlesubmit} >
-            <form action="">
-                <label htmlFor="">Title</label>
-                <input type="text" 
-                onChange={(e)=>settitle(e.target.value)}
-                value={title} />
-                <label htmlFor="">Artist</label>
-                <input type="text" 
-                  onChange={(e)=>setartist(e.target.value)}
-                  value={artist}
-                />
-                <label htmlFor="">Album</label>
-                <input type="text" 
-                  onChange={(e)=>setalbum(e.target.value)}
-                  value={album}
-                />
-                <label htmlFor="">Genre</label>
-                <input type="text"
-                  onChange={(e)=>setgenre(e.target.value)}
-                  value={genre}
-                />
-                <button ><h4>Create</h4></button>
-            </form>
 
-        </div>
+      setTitle('');
+      setArtist('');
+      setAlbum('');
+      setGenre('');
+      setError(null);
+      setIsLoading(false);
+      console.log('new list added', json);
+      alert('Successful');
+      navigate('/');
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
+  };
 
-    );
-}
+  return (
+    <List>
+      {isLoading && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
+        <Spin size="large" />
+      </div>
+      )}
+
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor="">Title</Label>
+        <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <Label htmlFor="">Artist</Label>
+        <Input type="text" value={artist} onChange={(e) => setArtist(e.target.value)} />
+        <Label htmlFor="">Album</Label>
+        <Input type="text" value={album} onChange={(e) => setAlbum(e.target.value)} />
+        <Label htmlFor="">Genre</Label>
+        <Input type="text" value={genre} onChange={(e) => setGenre(e.target.value)} />
+        <Button>
+          <Text4>Create</Text4>
+        </Button>
+      </Form>
+    </List>
+  );
+};
 
 export default CreateList;
