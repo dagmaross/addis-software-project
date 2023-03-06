@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setWorkout, deleteWorkout } from '../Redux_music_store/musicSlice';
+import { setWorkout, deleteWorkout,updateWorkout } from '../Redux_music_store/musicSlice';
 import { useSelector } from 'react-redux';
 import {P1,Music,Cards}from'../styledComponent/create';
+
 const Lists = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
